@@ -1,0 +1,7 @@
+%{ for this_key, this_value in these_variables ~}
+${this_key} = "${this_value}"
+%{ endfor ~}
+
+%{ for this_key, this_value in these_hcl_variables ~}
+${this_key} = ${this_value}
+%{ endfor ~}
