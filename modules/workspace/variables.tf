@@ -3,6 +3,14 @@ variable "name" {
   type        = string
 }
 
+variable "project" {
+  description = "Who is this for? A.K.A. 'team'"
+}
+
+variable "stage" {
+  description = "A.K.A. 'environment'"
+}
+
 variable "terraform_variables" {
   description = "Variables to write to tfvars file"
   type        = map(string)
