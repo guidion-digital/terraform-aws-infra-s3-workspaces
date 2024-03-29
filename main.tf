@@ -27,6 +27,8 @@ module "workspace" {
   for_each = var.applications
 
   name                    = each.key
+  project                 = var.project
+  stage                   = var.stage
   bucket                  = module.workspaces_bucket.bucket_id
   terraform_variables     = each.value.terraform_variables
   terraform_hcl_variables = each.value.terraform_hcl_variables

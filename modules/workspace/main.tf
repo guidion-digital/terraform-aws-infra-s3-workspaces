@@ -3,7 +3,7 @@ locals {
 }
 
 resource "aws_iam_role" "application" {
-  name = var.name
+  name = "${var.project}-${var.stage}-${var.name}"
   path = "/application/"
 
   assume_role_policy = jsonencode({
