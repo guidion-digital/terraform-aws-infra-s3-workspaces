@@ -26,17 +26,19 @@ variable "applications" {
     service_types              = AWS services which may use the application role
     application_policy         = Added to the application role
     application_policy_arns    = Added to the application role
+    application_role_arn_names = 🥽 Does nothing, but keeps compatibility with the real TFC workspaces module
     terraform_variables        = Map of (Terraform) string variables to give the workspace
     terraform_hcl_variables    = Map of (Terraform) strings containing HCL variable
   }
   EOD
 
   type = map(object({
-    service_types           = list(string),
-    application_policy      = optional(string, ""),
-    application_policy_arns = optional(list(string), []),
-    terraform_variables     = optional(map(string), {}),
-    terraform_hcl_variables = optional(map(any), {})
+    service_types              = list(string),
+    application_policy         = optional(string, ""),
+    application_policy_arns    = optional(list(string), []),
+    application_role_arn_names = optional(list(string), []),
+    terraform_variables        = optional(map(string), {}),
+    terraform_hcl_variables    = optional(map(any), {})
   }))
 
   default = {}
