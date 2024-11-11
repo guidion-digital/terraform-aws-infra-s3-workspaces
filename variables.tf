@@ -43,3 +43,4 @@ variable "applications" {
 
   default = {}
 }
+
