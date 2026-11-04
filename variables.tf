@@ -44,3 +44,9 @@ variable "applications" {
   default = {}
 }
 
+
+variable "max_versions" {
+  description = "Maximum number of versions to keep per state file (the current version plus noncurrent versions). Older noncurrent versions are deleted one day after becoming noncurrent"
+  type        = number
+  default     = 10
+}
