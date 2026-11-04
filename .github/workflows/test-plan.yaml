@@ -12,9 +12,10 @@ jobs:
       pull-requests: write
       contents: read
 
+  # Named 'tests-plan' because branch protection on acc requires the 'tests-plan / completed' check
   tests-plan:
     needs: test-workflow
-    uses: guidion-digital/terrappy/.github/workflows/tfc-test-helper-module-plan.yaml@v1
+    uses: guidion-digital/terrappy/.github/workflows/tfc-test-helper-module-plan.yaml@v3
     permissions:
       contents: read
       pull-requests: read
