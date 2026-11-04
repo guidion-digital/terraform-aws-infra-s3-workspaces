@@ -8,6 +8,24 @@ module "workspaces_bucket" {
   versioning_enabled           = true
   privileged_principal_arns    = var.privileged_principal_arns
   privileged_principal_actions = var.privileged_principal_actions
+
+  lifecycle_configuration_rules = [{
+    enabled                                = true
+    id                                     = "max-versions"
+    abort_incomplete_multipart_upload_days = null
+    filter_and                             = null
+    expiration                             = null
+    transition                             = []
+    noncurrent_version_transition          = []
+
+    # Keep the current version plus (max_versions - 1) noncurrent versions.
+    # S3 requires noncurrent_days >= 1, so excess versions are removed one day
+    # after becoming noncurrent.
+    noncurrent_version_expiration = {
+      newer_noncurrent_versions = var.max_versions > 1 ? var.max_versions - 1 : null
+      noncurrent_days           = 1
+    }
+  }]
 }
 
 resource "aws_dynamodb_table" "statefile_locks" {
